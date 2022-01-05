@@ -4,6 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RecursiveFibonacciTest {
 
@@ -27,5 +28,15 @@ class RecursiveFibonacciTest {
     })
     void testFibonacci(int first, long expected) {
         assertEquals(expected, fibonacci.calculate(first));
+    }
+
+    @ParameterizedTest(name = "f({0})")
+    @CsvSource({
+            "-1",
+            "-10"
+    })
+    void testFibonacciException(int first) {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> fibonacci.calculate(first));
+        assertEquals("n must be positive", exception.getMessage());
     }
 }
