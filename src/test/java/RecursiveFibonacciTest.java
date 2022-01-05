@@ -24,7 +24,8 @@ class RecursiveFibonacciTest {
             "3, 2",
             "7, 13",
             "14, 377",
-            "50, 12586269025"
+            "50, 12586269025",
+            "100, 3736710778780434371"
     })
     void testFibonacci(int first, long expected) {
         assertEquals(expected, fibonacci.calculate(first));
